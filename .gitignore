@@ -1,0 +1,15 @@
+# Ignore temporary/generated directories
+decap/
+backups/
+
+# Ignore Python-specific files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Ignore local configuration
+local_config.py
+
+# Ignore editor configs
+.vscode/
