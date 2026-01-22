@@ -7,7 +7,7 @@ This tool provides a simple and efficient way to back up and restore files betwe
 ### Usage
 
 ```bash
-main.py [--src SRC] --dest DEST [--restore] [--scan] [-v]
+python main.py [--src SRC] --dest DEST [--restore] [--scan] [-v]
 ```
 
 ### Workflow
@@ -61,18 +61,7 @@ The project is organized into a modular structure for better maintainability.
 
 ## Usage Examples
 
-### Setting a Default Source Directory
-
-To avoid having to specify the source every time, you can create a `local_config.py` file inside `filesync/` and define the `DEFAULT_SRC_DIR` variable.
-
-```python
-DEFAULT_SRC_DIR = r"/path/to/your/source/folder"
-```
-
-**Note: If `filesync/local_configs.py` does not define `DEFAULT_SRC_DIR` the `--src` argument is mandatory.**
-
 ### Basic Backup
-
 
 ```bash
 python main.py --src /path/to/your/source/folder --dest /path/to/your/backup/location
@@ -90,4 +79,28 @@ To see what changes would be made without performing any actions, use the `--sca
 
 ```bash
 python main.py --scan --src /path/to/your/source/folder --dest /path/to/your/backup/location
+```
+
+## Setting up Local Configuration
+
+### Setting a Default Source Directory
+
+To avoid having to specify the source every time, you can create a `local_config.py` file inside `filesync/` and define the `DEFAULT_SRC_DIR` variable.
+
+```python
+DEFAULT_SRC_DIR = r"/path/to/your/source/folder"
+```
+
+**Note: If `filesync/local_configs.py` does not define `DEFAULT_SRC_DIR` the `--src` argument is mandatory.**
+
+### Setting up Ignored Files
+
+You can also define a list of files or directories to ignore during synchronization by adding an `IGNORED_FILES` list in `local_config.py`.
+
+```python
+IGNORED_FILES = [
+    "temp/",
+    "ignore_this_file.txt",
+    ".DS_Store"
+]
 ```
