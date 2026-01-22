@@ -5,11 +5,12 @@ import os
 
 # === CONFIGURATION VARIABLES ===
 try:
-    from .local_config import DEFAULT_SRC_DIR
+    from .local_config import DEFAULT_SRC_DIR, IGNORED_DIRS
 except ImportError:
     # If the local_config.py file is not found, the default source directory is not set
     # and must be provided by the user via the command line.
     DEFAULT_SRC_DIR = None
+    IGNORED_DIRS = []
 
 HASH_CHUNK_SIZE = 8192
 """

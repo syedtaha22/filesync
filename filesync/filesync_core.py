@@ -8,7 +8,7 @@ import os
 import shutil
 import hashlib
 import json
-from .config import Colors, HASH_CHUNK_SIZE, HASH_DB_FILENAME
+from .config import Colors, HASH_CHUNK_SIZE, HASH_DB_FILENAME, IGNORED_DIRS
 
 # === FileSync Class ===
 class FileSync:
@@ -182,7 +182,10 @@ class FileSync:
             dictionaries containing the file's full path and hash.
         """
         files = {}
-        for root, _, filenames in os.walk(folder):
+        for root, dirs, filenames in os.walk(folder):
+            # Filter out ignored directories in-place to prevent os.walk from descending into them
+            dirs[:] = [d for d in dirs if d not in IGNORED_DIRS]
+            
             for filename in filenames:
                 if filename == HASH_DB_FILENAME:
                     continue  # Skip our own db file
